@@ -1,6 +1,5 @@
 "use client";  // Enable client-side rendering for this component
 
-
 import { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import styled from "styled-components";
@@ -17,6 +16,11 @@ const FormContainer = styled.div`
 
   button {
     align-self: flex-end;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 20px;
   }
 `;
 
@@ -89,6 +93,12 @@ const ItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+  }
+
+  @media (max-width: 600px) {
+    label {
+      font-size: 14px;
+    }
   }
 `;
 

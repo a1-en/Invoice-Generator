@@ -16,9 +16,14 @@ const Modal = styled.div`
               0px 47px 47px rgba(0, 0, 0, 0.09),
               0px 12px 26px rgba(0, 0, 0, 0.1);
   border-radius: 26px;
-  max-width: 500px;
   padding: 20px;
   overflow: auto;
+  
+  @media (max-width: 600px) {
+    width: 90%;
+    padding: 15px;
+    border-radius: 20px;
+  }
 `;
 
 const Form = styled.form`
@@ -57,6 +62,11 @@ const SubmitButton = styled(Button)`
 
   &:hover {
     box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px rgba(0, 0, 0, 0.23);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    height: 45px;
   }
 `;
 
@@ -182,7 +192,7 @@ const PaymentForm = ({ onCancel, selectedPlan }) => {
       {/* Snackbar for payment success message */}
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={30000}
+        autoHideDuration={3000}
         onClose={handleSnackbarClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
