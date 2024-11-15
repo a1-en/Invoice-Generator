@@ -141,7 +141,7 @@ const PaymentForm = ({ onCancel, selectedPlan }) => {
     <Modal>
       <Form onSubmit={handleSubmit}>
         <Typography style={{ color: 'black' }} variant="h6">
-          Payment Details for {selectedPlan === 'Paid' ? 'Paid Plan' : 'Free Plan'}
+          Payment Details for {selectedPlan === 'Paid' ? 'Paid Plan' : 'paid Plan'}
         </Typography>
         
         <InputField

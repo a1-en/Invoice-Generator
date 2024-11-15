@@ -143,14 +143,7 @@ const InvoiceGenerator = () => {
     setInvoiceData({ ...invoiceData, items });
   };
 
-  const handleLogoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => setInvoiceData({ ...invoiceData, logo: reader.result });
-      reader.readAsDataURL(file);
-    }
-  };
+
 
   const addItem = () => {
     setInvoiceData({
@@ -214,10 +207,7 @@ const InvoiceGenerator = () => {
     <FormContainer>
       <h3 style={{ color: '#f1f1f1' }}>S.No: {invoiceData.serialNumber}</h3>
       <h4 style={{ color: '#f1f1f1' }}>Date: {currentDate}</h4>
-      <label>
-        Logo:
-        <Input type="file" accept="image/*" onChange={handleLogoUpload} />
-      </label>
+    
       <label>
         Name:
         <Input
