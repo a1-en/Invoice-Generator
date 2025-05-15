@@ -1,101 +1,89 @@
 // src/app/components/PricingCard.js
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Card, CardContent, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { motion } from 'framer-motion';
+
+const MotionCard = motion(Card);
 
 const PricingCard = ({ title, price, description, features, onClick }) => {
   return (
-    <Box
+    <MotionCard
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
       sx={{
-        borderRadius: '16px',
-        boxShadow: '0 30px 30px -25px rgba(0, 38, 255, 0.205)',
-        padding: { xs: '10px', sm: '20px' },
-        backgroundColor: '#fff',
-        color: '#697e91',
-        maxWidth: { xs: '100%', sm: '300px' },
+        maxWidth: 360,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
         position: 'relative',
-        margin: '0 auto',
+        overflow: 'visible',
+        '&:hover': {
+          transform: 'translateY(-8px)',
+        },
       }}
     >
       <Box
         sx={{
-          padding: { xs: '16px', sm: '20px' },
-          paddingTop: '40px',
-          backgroundColor: '#ecf0ff',
-          borderRadius: '12px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          position: 'absolute',
+          top: -16,
+          right: 16,
+          backgroundColor: 'primary.main',
+          color: 'white',
+          padding: '8px 16px',
+          borderRadius: 2,
+          fontWeight: 600,
+          fontSize: '1.25rem',
         }}
       >
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '0',
-            right: '0',
-            backgroundColor: '#bed6fb',
-            borderRadius: '99em 0 0 99em',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0.5em 0.75em',
-            fontSize: { xs: '1rem', sm: '1.25rem' },
-            fontWeight: '600',
-            color: '#425475',
-          }}
-        >
-          <span>
-            ${price} <small>/ m</small>
-          </span>
-        </Box>
+        ${price}/mo
+      </Box>
 
-        <Typography variant="h6" sx={{ fontWeight: 600, color: '#425675', mt: 2, fontSize: { xs: '1rem', sm: '1.25rem' } }}>
+      <CardContent sx={{ flexGrow: 1, pt: 4 }}>
+        <Typography variant="h5" component="h2" gutterBottom fontWeight={600}>
           {title}
         </Typography>
-        <Typography sx={{ mt: 1, textAlign: 'center', fontSize: { xs: '0.875rem', sm: '1rem' } }}>{description}</Typography>
-        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', mt: 2 }}>
+        
+        <Typography variant="body1" color="text.secondary" paragraph>
+          {description}
+        </Typography>
+
+        <List sx={{ mb: 2 }}>
           {features.map((feature, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem', mb: 1 }}>
-              <Box
-                sx={{
-                  backgroundColor: '#1FCAC5',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#fff',
-                  borderRadius: '50%',
-                  width: { xs: '18px', sm: '20px' },
-                  height: { xs: '18px', sm: '20px' },
+            <ListItem key={index} sx={{ py: 0.5 }}>
+              <ListItemIcon sx={{ minWidth: 36 }}>
+                <CheckCircleIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary={feature}
+                primaryTypographyProps={{
+                  variant: 'body2',
+                  color: 'text.primary',
                 }}
-              >
-                <svg height="14" width="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0h24v24H0z" fill="none"></path>
-                  <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
-                </svg>
-              </Box>
-              <Typography sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>{feature}</Typography>
-            </Box>
+              />
+            </ListItem>
           ))}
-        </Box>
+        </List>
+
         <Button
           variant="contained"
+          fullWidth
           onClick={onClick}
           sx={{
-            backgroundColor: '#6558d3',
-            borderRadius: '6px',
-            color: '#fff',
-            fontWeight: 500,
-            fontSize: { xs: '1rem', sm: '1.125rem' },
-            width: '100%',
             mt: 'auto',
-            padding: '0.625em 0.75em',
-            '&:hover': {
-              backgroundColor: '#4133B7',
-            },
+            py: 1.5,
+            borderRadius: 2,
+            textTransform: 'none',
+            fontSize: '1rem',
+            fontWeight: 500,
           }}
         >
-          Choose plan
+          Get Started
         </Button>
-      </Box>
-    </Box>
+      </CardContent>
+    </MotionCard>
   );
 };
 
